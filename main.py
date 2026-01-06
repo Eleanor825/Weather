@@ -44,7 +44,16 @@ params = {
 
 # 根据城市名查找地理位置
 url = "https://mj3h2qnnk5.re.qweatherapi.com/v2/city/lookup"
-resp_json = requests.get(url, params=params, headers=headers, timeout=10).json()
+r = requests.get(url, params=params, headers=headers, timeout=10)
+
+print("QWeather lookup status:", r.status_code)
+print("QWeather lookup url:", r.url)
+print("QWeather lookup headers Content-Type:", r.headers.get("Content-Type"))
+print("QWeather lookup head:", r.text[:300])  # 打印前300个字符
+
+r.raise_for_status()  # 非 200 直接抛出更清晰错误
+resp_json = r.json()
+
 
 city_id = resp_json["location"][0]["id"]
 params["location"] = city_id
