@@ -44,7 +44,8 @@ params = {
 
 # 根据城市名查找地理位置
 url = "https://mj3h2qnnk5.re.qweatherapi.com/v2/city/lookup"
-resp_json = json.loads(requests.get(url, params, headers=headers).text)
+resp_json = requests.get(url, params=params, headers=headers, timeout=10).json()
+
 city_id = resp_json["location"][0]["id"]
 params["location"] = city_id
 
