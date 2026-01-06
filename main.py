@@ -43,7 +43,7 @@ params = {
 }
 
 # 根据城市名查找地理位置
-url = "https://mj3h2qnnk5.re.qweatherapi.com/v2/city/lookup"
+url = "https://mj3h2qnnk5.re.qweatherapi.com/geo/v2/city/lookup"
 r = requests.get(url, params=params, headers=headers, timeout=10)
 
 print("QWeather lookup status:", r.status_code)
